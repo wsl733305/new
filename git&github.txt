@@ -1,0 +1,14 @@
+
+github网站
+注册 http://github.com/
+
+
+git 工具
+安装 https://git-scm.com/download/win
+
+git基本命令
+
+git链接上github
+上传到github
+
+下载到本地

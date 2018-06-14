@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+		<style>
+			
+		</style>
+		<script>
+			/*
+				键盘事件
+					摁下触发
+						onkeydown
+					抬起触发
+						onkeyup
+
+					事件对象可以拿到键值
+						keyCode 
+						返回一个十进制的数，来表示摁下的是哪一键
+
+				事件功能属性
+					ev.shiftKey
+						按下shift键盘为true，否则为false
+
+					ev.ctrlKey
+						按下ctrl键盘为true，否则为false
+
+					ev.altKey
+						按下alt键盘为true，否则为false
+
+					只要摁着这些键，触发任何事件，都会记录状态
+
+				绑定在可以获取焦点的元素上
+					表单元素上
+			*/
+		</script>
+	</head>
+
+	<body>
+		<div>1111</div>
+		<input type="" name="" id="search" />
+		<ul id="list"></ul>
+		<script>
+
+			search.onkeyup = function (e){
+
+				console.log(e);
+
+				if(e.keyCode === 13 && e.ctrlKey){
+					var value = this.value;
+					list.innerHTML += '<li>'+value+'</li>'
+				}
+				
+				
+			}
+
+		</script>
+	</body>
+</html>

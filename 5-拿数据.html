@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title></title>
+    <style>
+
+    </style>
+    <script type="text/miaov">
+        焦点事件 用在表单元素上 a 表单元素获取焦点 1. 点击获取焦点 2. tab键获取焦点 只能有一个元素获取焦点，一个元素获取焦点必然有另一个元素失去焦点 默认的焦点是在document上 获取焦点 onfocus 失去焦点 onblur value值发生变化触发事件 oninput 在失去焦点时候，value值发生变化触发事件 onchange
+    </script>
+</head>
+
+<body>
+    <select id="sheng">
+        <option value="01">B 北京</option>
+        <option value="02">S 上海</option>
+        <option value="03">T 天津</option>
+        <option value="04">C 重庆</option>
+        <option value="05">A 安徽</option>
+        <option value="06">F 福建</option>
+        <option value="07">G 甘肃</option>
+        <option value="08">G 广东</option>
+        <option value="09">G 广西</option>
+        <option value="10">G 贵州</option>
+        <option value="11">H 海南</option>
+        <option value="12">H 河北</option>
+        <option value="13">H 河南</option>
+        <option value="14">H 黑龙江</option>
+        <option value="15">H 湖北</option>
+        <option value="16">H 湖南</option>
+        <option value="17">J 江苏</option>
+        <option value="18">J 江西</option>
+        <option value="19">J 吉林</option>
+        <option value="20">L 辽宁</option>
+        <option value="21">N 内蒙古</option>
+        <option value="22">N 宁夏</option>
+        <option value="23">Q 青海</option>
+        <option value="24">S 山东</option>
+        <option value="25">S 山西</option>
+        <option value="26">S 陕西</option>
+        <option value="27">S 四川</option>
+        <option value="28">X 西藏</option>
+        <option value="29">X 新疆</option>
+        <option value="30">Y 云南</option>
+        <option value="31">Z 浙江</option>
+        <option value="32">X 香港</option>
+        <option value="33">A 澳门</option>
+        <option value="34">T 台湾</option>
+        <option value="35">Y 亚洲</option>
+        <option value="36">B 北美洲</option>
+        <option value="37">N 南美洲</option>
+        <option value="38">D 大洋洲</option>
+        <option value="39">O 欧洲</option>
+        <option value="40">F 非洲</option>
+    </select>
+    <select id="shi"></select>
+    <select id="xian"></select>
+    <script>
+    	// https://www.hao123.com/api/citymenu?
+    	//callback=fn&pid=02&cid=00&_=1528943703718
+    	//https://www.hao123.com/api/citymenu?callback=jQuery1101030439832481036144_1528943743444&pid=06&cid=01&_=1528943743462
+
+    	// 根据省的id，拿市名 根据市拿县
+
+    	function miaov(data){
+    		shi.innerHTML = data.map(function (item){
+    			return '<option value="'+item.id+'">'+item.name+'</option>'	
+    		}).join('')
+
+    		var script = document.createElement('script');
+    		script.src = 'https://www.hao123.com/api/citymenu?callback=ketang&pid='+sheng.value+'&cid='+ data[0].id
+
+    		document.body.appendChild(script)
+    	}
+
+    	function ketang(data){
+    		xian.innerHTML = data.map(function (item){
+    			return '<option value="'+item.id+'">'+item.name+'</option>'	
+    		}).join('');
+    	}
+
+    	sheng.onchange = function (){
+    		var shengId = sheng.value;
+
+    		var script = document.createElement('script');
+    		script.src = 'https://www.hao123.com/api/citymenu?callback=miaov&pid='+shengId;
+
+    		document.body.appendChild(script)
+    	}
+
+    	shi.onchange  =function (){
+    		var script = document.createElement('script');
+    		script.src = 'https://www.hao123.com/api/citymenu?callback=ketang&pid='+sheng.value+'&cid='+ shi.value
+    		document.body.appendChild(script)	
+    	}
+
+
+    </script>
+</body>
+
+</html>

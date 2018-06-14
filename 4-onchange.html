@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+		<style>
+			
+		</style>
+		<script type="text/miaov">
+			焦点事件
+				用在表单元素上  a
+
+			表单元素获取焦点
+				1. 点击获取焦点
+				2. tab键获取焦点
+
+			只能有一个元素获取焦点，一个元素获取焦点必然有另一个元素失去焦点
+			默认的焦点是在document上
+
+			获取焦点
+				onfocus
+			失去焦点
+				onblur
+			value值发生变化触发事件
+				oninput
+
+			在失去焦点时候，value值发生变化触发事件
+
+				onchange
+
+		</script>
+	</head>
+
+	<body>
+		
+		<select id="selectBox">
+			<option value="01">北京</option>
+			<option value="02" selected>上海</option>
+			<option value="03">杭州</option>
+		</select>
+		<script>
+			// select的value值取决于选中option的value
+			console.log(selectBox.value);
+			// selectIndex
+			selectBox.onchange = function (){
+				console.log(selectBox.value);
+			}
+
+		</script>
+	</body>
+</html>

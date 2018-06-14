@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+		<style>
+			
+		</style>
+		<script>
+			/*
+				键盘事件
+					摁下触发
+						onkeydown
+					抬起触发
+						onkeyup
+
+					事件对象可以拿到键值
+						keyCode 
+						返回一个十进制的数，来表示摁下的是哪一键
+
+				绑定在可以获取焦点的元素上
+					表单元素上
+			*/
+		</script>
+	</head>
+
+	<body>
+		<div>1111</div>
+		<input type="" name="" id="search" />
+		<script>
+			search.onkeydown = function (e){
+				console.log(this.value);
+				console.log('摁下去的是：',e.keyCode);	
+			}
+			search.onkeyup = function (){
+				console.log('onkeyup',this.value);	
+			}
+		</script>
+	</body>
+</html>

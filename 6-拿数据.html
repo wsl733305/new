@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+		<style>
+			
+		</style>
+		<script>
+			
+		</script>
+	</head>
+
+	<body>
+		<input type="" name="" id="searchInput" />
+		<ul id="list">
+			<li>
+				<a href="">1</a>
+			</li>
+		</ul>
+		<script>
+			function miaov(data){
+				list.innerHTML = data.s.map(function (item){
+					return '<li><a href="https://www.baidu.com/s?word='+item+'">'+item+'</a></li>'	
+				}).join('')
+			};
+			
+			searchInput.oninput = function (){
+				console.log(1);
+				var value = searchInput.value;
+
+				var script = document.createElement('script');
+				script.src = 'https://gsp0.baidu.com/5a1Fazu8AA54nxGko9WTAnF6hhy/su?cb=miaov&wd='+value
+
+				document.body.appendChild(script)
+			}
+		</script>
+	</body>
+</html>

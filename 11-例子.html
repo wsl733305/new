@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+		<style>
+			div {
+				width: 100px;
+				height: 100px;
+				background: red;
+				margin: 20px;
+				float: left;
+			}
+			.yellow {
+				background: yellow;
+			}
+		</style>
+		<script>
+			/*
+				键盘事件
+					摁下触发
+						onkeydown
+					抬起触发
+						onkeyup
+
+					事件对象可以拿到键值
+						keyCode 
+						返回一个十进制的数，来表示摁下的是哪一键
+
+				事件功能属性
+					ev.shiftKey
+						按下shift键盘为true，否则为false
+
+					ev.ctrlKey
+						按下ctrl键盘为true，否则为false
+
+					ev.altKey
+						按下alt键盘为true，否则为false
+
+					只要摁着这些键，触发任何事件，都会记录状态
+
+				绑定在可以获取焦点的元素上
+					表单元素上
+			*/
+		</script>
+	</head>
+
+	<body>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<script>
+			var divs = document.querySelectorAll('div');
+			var currentIndex = -1;
+			for( var i = 0; i < divs.length; i++ ){
+				divs[i].index = i;
+				divs[i].onclick = function (e){
+					console.log(e.shiftKey);
+					if(e.shiftKey){  // 摁了shift键
+						/*
+							1. 没有任何人选中 选中自己
+								X a. 循环所有，有class为yellow
+								b. 变量记录点击了
+
+							2. 已经选中了一个
+								a. 开头  从开头到当前点击的元素中间都加上
+								b. 结尾  从点击到结尾全都加上
+								c. 非开头，非结尾 当前点击的到非开头，非结尾中间的加上
+							3. 已经选中两个
+								 以最后一个为准
+						*/
+
+						if(currentIndex === -1){
+							this.classList.add('yellow');
+							return;
+						}
+
+						if(currentIndex === 0){
+							for( var i = currentIndex; i <= this.index; i++ ){
+								divs[i].classList.add('yellow')
+							}
+							for( var i = this.index+1; i < divs.length; i++ ){
+								divs[i].classList.remove('yellow')
+							}
+						}else if(currentIndex === divs.length-1){
+							for( var i = this.index; i <= divs.length-1; i++ ){
+								divs[i].classList.add('yellow')
+							}
+							for( var i = 0; i < this.index; i++ ){
+								divs[i].classList.remove('yellow')
+							}
+						}else if(currentIndex !== -1){
+							if(this.index === currentIndex){
+								for( var i = 0; i < divs.length-1; i++ ){
+									divs[i].classList.remove('yellow')
+								}
+								this.classList.add('yellow');
+
+								return;
+							}
+							if(this.index < currentIndex){
+								for( var i = this.index; i <= currentIndex; i++ ){
+									divs[i].classList.add('yellow')
+								}
+								for( var i = 0; i < this.index; i++ ){
+									divs[i].classList.remove('yellow')
+								}
+							}
+							if(this.index > currentIndex){
+								for( var i = currentIndex; i <= this.index; i++ ){
+									divs[i].classList.add('yellow')
+								}
+								for( var i = this.index+1; i <= divs.length-1; i++ ){
+									divs[i].classList.remove('yellow')
+								}
+							}
+						}
+
+
+					}else{
+						this.classList.toggle('yellow');
+						currentIndex = this.index;  // 记录下标
+					}
+						
+				}
+			}
+
+		</script>
+	</body>
+</html>
